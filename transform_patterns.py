@@ -3,20 +3,33 @@ import numpy as np
 from PIL import Image
 
 
+# def fourier_transform_2D(data):
+#     # Compute the 2D Fourier transform of the data
+#     f_transform = np.fft.fft2(data)
+
+#     # Shift the zero-frequency component to the center
+#     f_shift = np.fft.fftshift(f_transform)
+
+#     # # Compute power spectrum
+#     # power_spectrum = np.power(f_shift, 2)
+
+#     # Compute magnitude spectrum
+#     magnitude_spectrum = np.abs(f_shift)
+
+#     max_magnitude_spectrum = np.max(magnitude_spectrum) if np.max(magnitude_spectrum) != 0.0 else 1.0
+
+#     return magnitude_spectrum / max_magnitude_spectrum
+
 def fourier_transform_2D(data):
     # Compute the 2D Fourier transform of the data
     f_transform = np.fft.fft2(data)
 
-    # Shift the zero-frequency component to the center
-    f_shift = np.fft.fftshift(f_transform)
-
-    # Compute power spectrum
-    power_spectrum = np.power(f_shift, 2)
-
     # Compute magnitude spectrum
-    magnitude_spectrum = np.abs(f_shift)
+    magnitude_spectrum = np.abs(f_transform)
 
-    return magnitude_spectrum
+    max_magnitude_spectrum = np.max(magnitude_spectrum) if np.max(magnitude_spectrum) != 0.0 else 1.0
+
+    return magnitude_spectrum / max_magnitude_spectrum
 
 
 def process_image(input_image_path, output_image_path):
