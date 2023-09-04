@@ -17,7 +17,7 @@ def fourier_transform_2D(data):
 
 
 def main():
-    directory_path = os.path.join('input')
+    directory_path = os.path.join("input")
 
     for root, _, files in os.walk(directory_path):
         for f in files:
@@ -26,6 +26,5 @@ def main():
                 print("File:", file_path)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
