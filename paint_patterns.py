@@ -21,7 +21,7 @@ def sines(h=1, k=1, image_width=100, image_height=100):
 
     for x in range(image_width):
         for y in range(image_height):
-            value = (math.sin(2 * h * math.pi * x / image_width) / 2) + 0.5
+            value = (math.sin(2*h*math.pi*x/image_width)/4+math.sin(2*k*math.pi*y/image_height)/4) + 0.5
             grayscale[y, x] = math.floor(value * 255)
 
     return grayscale
@@ -36,9 +36,9 @@ def main():
     img_01 = Image.fromarray(grayscale_01, "L")
     img_01.save(os.path.join("input", "one_rect.png"))
     
-    grayscale_02 = sines()
+    grayscale_02 = sines(h=3, k=2)
     img_02 = Image.fromarray(grayscale_02, "L")
-    img_02.save(os.path.join("input", "sines_h=1_k=1.png"))
+    img_02.save(os.path.join("input", "sines_h=3_k=2.png"))
 
     grayscale_99 = (np.ones((100, 100)) * 255).astype(np.uint8)
     img_99 = Image.fromarray(grayscale_99, "L")
