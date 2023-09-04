@@ -1,7 +1,6 @@
 from os.path import join
 import numpy as np
 from PIL import Image
-from math import floor
 
 
 def one_rect(rect_width=50, rect_height=50, image_width=100, image_height=100):
