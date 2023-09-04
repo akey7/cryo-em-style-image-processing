@@ -18,7 +18,7 @@ def one_rect(rect_width=50, rect_height=50, image_width=100, image_height=100):
 def main():
     grayscale = one_rect()
     img = Image.fromarray(grayscale, 'L')
-    img.save(join('output', 'one_rect.png'))
+    img.save(join('input', 'one_rect.png'))
 
 
 if __name__ == '__main__':
