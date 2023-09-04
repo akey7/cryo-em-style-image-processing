@@ -28,12 +28,21 @@ def sines(h=1, k=1, image_width=100, image_height=100):
 
 
 def main():
+    grayscale_00 = np.zeros((100, 100)).astype(np.uint8)
+    img_00 = Image.fromarray(grayscale_00, "L")
+    img_00.save(os.path.join("input", "blackness.png"))
+    
     grayscale_01 = one_rect()
     img_01 = Image.fromarray(grayscale_01, "L")
     img_01.save(os.path.join("input", "one_rect.png"))
+    
     grayscale_02 = sines()
     img_02 = Image.fromarray(grayscale_02, "L")
     img_02.save(os.path.join("input", "sines_h=1_k=1.png"))
+
+    grayscale_99 = (np.ones((100, 100)) * 255).astype(np.uint8)
+    img_99 = Image.fromarray(grayscale_99, "L")
+    img_99.save(os.path.join("input", "whiteness.png"))
 
 
 if __name__ == "__main__":
