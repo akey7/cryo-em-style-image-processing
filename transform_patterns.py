@@ -1,42 +1,32 @@
 import os
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 
-
-# def fourier_transform_2D(data):
-#     # Compute the 2D Fourier transform of the data
-#     f_transform = np.fft.fft2(data)
-
-#     # Shift the zero-frequency component to the center
-#     f_shift = np.fft.fftshift(f_transform)
-
-#     # # Compute power spectrum
-#     # power_spectrum = np.power(f_shift, 2)
-
-#     # Compute magnitude spectrum
-#     magnitude_spectrum = np.abs(f_shift)
-
-#     max_magnitude_spectrum = np.max(magnitude_spectrum) if np.max(magnitude_spectrum) != 0.0 else 1.0
-
-#     return magnitude_spectrum / max_magnitude_spectrum
 
 def fourier_transform_2D(data):
     # Compute the 2D Fourier transform of the data
     f_transform = np.fft.fft2(data)
 
+    # Shift the zero-frequency component to the center
+    f_shift = np.fft.fftshift(f_transform)
+
     # Compute magnitude spectrum
-    magnitude_spectrum = np.abs(f_transform)
+    magnitude_spectrum = np.abs(f_shift)
 
-    max_magnitude_spectrum = np.max(magnitude_spectrum) if np.max(magnitude_spectrum) != 0.0 else 1.0
-
-    return magnitude_spectrum / max_magnitude_spectrum
+    return magnitude_spectrum
 
 
 def process_image(input_image_path, output_image_path):
     img = Image.open(input_image_path).convert("L")
-    power_spectrum = fourier_transform_2D(img)
-    power_spectrum_img = Image.fromarray(power_spectrum, "L")
-    power_spectrum_img.save(output_image_path)
+    magnitude_spectrum = fourier_transform_2D(img)
+    plt.imshow(np.log(1 + magnitude_spectrum), cmap='gray')
+    plt.title('Magnitude Spectrum')
+    plt.colorbar()
+    if os.path.exists(output_image_path):
+        os.remove(output_image_path)
+    plt.savefig(output_image_path)
+    plt.clf()
 
 
 def main():
